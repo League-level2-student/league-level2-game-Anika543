@@ -40,7 +40,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	void updateGameState() {
-
+		playerOne.update();
+		playerTwo.update(); 
 	}
 
 	void updateEndState() {
@@ -108,7 +109,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			updateEndState();
 		}
 
-		System.out.println("action");
+		//ystem.out.println("action");
 		repaint();
 	}
 
@@ -134,35 +135,35 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			if (e.getKeyCode() == KeyEvent.VK_W) {
 				System.out.println("UP");
 				playerOne.movingUp = true; 
-				playerOne.up();
 			}
 			if (e.getKeyCode() == KeyEvent.VK_S) {
 				System.out.println("DOWN");
 				playerOne.movingDown = true; 
-				playerOne.down();
 			}
 			if (e.getKeyCode() == KeyEvent.VK_A) {
 				System.out.println("LEFT");
 				playerOne.movingLeft = true;
-				playerOne.left();
 			}
 			if (e.getKeyCode() == KeyEvent.VK_D) {
 				System.out.println("RIGHT");
 				playerOne.movingRight = true; 
-				playerOne.right(); 
 			}
 		//playerTwo movement 	
 			if (e.getKeyCode() == KeyEvent.VK_UP) {
 				System.out.println("UP2");
+				playerTwo.movingUp = true;
 			}
 			if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 				System.out.println("DOWN2");
+				playerTwo.movingDown = true; 
 			}
 			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 				System.out.println("LEFT2");
+				playerTwo.movingLeft = true; 
 			}
 			if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 				System.out.println("RIGHT2");
+				playerTwo.movingRight = true; 
 			}
 		
 		}
@@ -172,7 +173,43 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-
+		if (currentState == GAME) {
+			//playerOne movement
+				if (e.getKeyCode() == KeyEvent.VK_W) {
+					System.out.println("UP");
+					playerOne.movingUp = false; 
+				}
+				if (e.getKeyCode() == KeyEvent.VK_S) {
+					System.out.println("DOWN");
+					playerOne.movingDown = false; 
+				}
+				if (e.getKeyCode() == KeyEvent.VK_A) {
+					System.out.println("LEFT");
+					playerOne.movingLeft = false;
+				}
+				if (e.getKeyCode() == KeyEvent.VK_D) {
+					System.out.println("RIGHT");
+					playerOne.movingRight = false; 
+				}
+			//playerTwo movement 	
+				if (e.getKeyCode() == KeyEvent.VK_UP) {
+					System.out.println("UP2");
+					playerTwo.movingUp = false;
+				}
+				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+					System.out.println("DOWN2");
+					playerTwo.movingDown = false; 
+				}
+				if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+					System.out.println("LEFT2");
+					playerTwo.movingLeft = false; 
+				}
+				if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+					System.out.println("RIGHT2");
+					playerTwo.movingRight = false; 
+				}
+			
+			}
 	}
 }
 

@@ -3,19 +3,16 @@ package pingpong;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class PlayerOne extends GameObject{
+public class PlayerTwo extends GameObject{
 
-	public PlayerOne(int x, int y, int width, int height) {
+	public PlayerTwo(int x, int y, int width, int height) {
 		// TODO Auto-generated constructor stub
 		super(x, y, width, height); 
-		
-		speed = 10; 
 	}
 	
 	void draw(Graphics g) {
-		g.setColor(Color.YELLOW);
-        g.fillRect(x, y, width, height);
-
+		g.setColor(Color.RED);
+		g.fillRect(x, y, width, height); 
 	}
 	
 	boolean movingUp = false;
@@ -43,7 +40,8 @@ public class PlayerOne extends GameObject{
 		if(y<=410)
 		y+=speed; 
 	}
-	
+
+ 
 	public void update() {
 		if (movingUp) {
 			up();
@@ -62,3 +60,6 @@ public class PlayerOne extends GameObject{
 	
 
 }
+	
+
+
