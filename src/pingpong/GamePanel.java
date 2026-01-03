@@ -19,8 +19,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Font titleFont;
 	Font font;
 	Timer frameDraw;
-	PlayerOne playerOne = new PlayerOne(40, 200, 25, 50);
-	PlayerTwo playerTwo = new PlayerTwo(720, 200, 25, 50);
+	Player playerOne = new Player(40, 200, 25, 50, Color.RED, 10);
+	Player playerTwo = new Player(720, 200, 25, 50, Color.YELLOW, 10);
+	Ball ball = new Ball(playerOne.x, playerOne.y, 25, 25, 0, Color.WHITE); 
+	Table table = new Table(200, 100, 400, 220, 0, Color.BLUE); 
 	int currentState = MENU;
 
 	@Override
@@ -42,6 +44,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	void updateGameState() {
 		playerOne.update();
 		playerTwo.update(); 
+		ball.update(); 
 	}
 
 	void updateEndState() {
@@ -64,11 +67,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	void drawGameState(Graphics g) {
-		g.setColor(Color.WHITE);
+		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, PingPong.WIDTH, PingPong.HEIGHT);
 		
 		playerOne.draw(g); 
 		playerTwo.draw(g); 
+		table.draw(g);
+		ball.draw(g); 
 
 	}
 
