@@ -9,16 +9,17 @@ public class GameObject {
 	int width;
 	int height;
 	int speed; 
-	
+	ObjectManager objectManager; 
 	Rectangle collisionBox; 
 
-	public GameObject(int x, int y, int width, int height, int speed) {
+	public GameObject(int x, int y, int width, int height, int speed, ObjectManager objectManager ) {
 		// TODO Auto-generated constructor stub
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
 		this.speed = speed; 
+		this.objectManager = objectManager; 
 		
 		collisionBox = new Rectangle(x, y, width, height); 
 	}

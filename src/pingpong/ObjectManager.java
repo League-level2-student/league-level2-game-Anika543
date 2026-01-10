@@ -1,23 +1,157 @@
 package pingpong;
 
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-public class ObjectManager {
+public class ObjectManager implements KeyListener {
 
-	Player playerOne = new Player(40, 200, 25, 50, Color.RED, 10);
-	Player playerTwo = new Player(720, 200, 25, 50, Color.YELLOW, 10);
-	Ball ball = new Ball(playerOne.x, playerOne.y, 25, 25, 0, Color.WHITE); 
-	Table table = new Table(200, 100, 400, 220, 0, Color.BLUE); 
-	
+	final int playerWidth = 20; 
+	final int playerHeight = 50; 
+	boolean hasBallBeenServed = false; 
+
+	Player playerOne = new Player(40, 200, playerWidth, playerHeight, Color.RED, 10, this, true, true);
+	Player playerTwo = new Player(PingPong.WIDTH - 40 - playerOne.width, 200, playerWidth, playerHeight, 
+			Color.YELLOW, 10, this, false, false);
+	Ball ball = new Ball(playerOne.x, playerOne.y, 25, 25, 0, Color.WHITE, this);
+	Table table = new Table(200, 150, 400, 200, 0, Color.BLUE, this);
+
 	public ObjectManager() {
 		// TODO Auto-generated constructor stub
 	}
-	//TODO: add update and draw methods
-	//TODO: Object manager could be a keyListener
-	//TODO: allow player to hold the ball before serving
-	//TODO: implement serving functionality 
-	//TODO: Make player able to hit the ball
-	//TODO: Make it so that when player approaches ball faster it travels faster
+
+	// TODO: add update and draw methods
+	public void update() {
+		playerOne.update();
+		playerTwo.update();
+		ball.update();
+	}
+
+	public void draw(Graphics g) {
+		playerOne.draw(g);
+		playerTwo.draw(g);
+		ball.draw(g);
+		table.draw(g);
+
+	}
+
+	// TODO: Object manager could be a keyListener
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		// playerOne movement
+
+		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+			if (GamePanel.currentState == GamePanel.END) {
+				GamePanel.currentState = GamePanel.MENU;
+			} else {
+				GamePanel.currentState++;
+			}
+		}
+		if (GamePanel.currentState == GamePanel.GAME) {
+			if (e.getKeyCode() == KeyEvent.VK_W) {
+				System.out.println("UP");
+				playerOne.movingUp = true;
+			}
+			if (e.getKeyCode() == KeyEvent.VK_S) {
+				System.out.println("DOWN");
+				playerOne.movingDown = true;
+			}
+			if (e.getKeyCode() == KeyEvent.VK_A) {
+				System.out.println("LEFT");
+				playerOne.movingLeft = true;
+			}
+			if (e.getKeyCode() == KeyEvent.VK_D) {
+				System.out.println("RIGHT");
+				playerOne.movingRight = true;
+			}
+			
+			// playerTwo movement
+			if (e.getKeyCode() == KeyEvent.VK_UP) {
+				System.out.println("UP2");
+				playerTwo.movingUp = true;
+			}
+			if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+				System.out.println("DOWN2");
+				playerTwo.movingDown = true;
+			}
+			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+				System.out.println("LEFT2");
+				playerTwo.movingLeft = true;
+			}
+			if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+				System.out.println("RIGHT2");
+				playerTwo.movingRight = true;
+			}
+			
+//			if(!hasBallBeenServed) {
+//				ball.x = playerOne.x; 
+//				ball.y = playerOne.y; 
+//
+//			}
+			
+		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+			hasBallBeenServed = true; 
+		}
+
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		if (GamePanel.currentState == GamePanel.GAME) {
+			//playerOne movement
+				if (e.getKeyCode() == KeyEvent.VK_W) {
+					System.out.println("UP");
+					playerOne.movingUp = false; 
+				}
+				if (e.getKeyCode() == KeyEvent.VK_S) {
+					System.out.println("DOWN");
+					playerOne.movingDown = false; 
+				}
+				if (e.getKeyCode() == KeyEvent.VK_A) {
+					System.out.println("LEFT");
+					playerOne.movingLeft = false;
+				}
+				if (e.getKeyCode() == KeyEvent.VK_D) {
+					System.out.println("RIGHT");
+					playerOne.movingRight = false; 
+				}
+			//playerTwo movement 	
+				if (e.getKeyCode() == KeyEvent.VK_UP) {
+					System.out.println("UP2");
+					playerTwo.movingUp = false;
+				}
+				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+					System.out.println("DOWN2");
+					playerTwo.movingDown = false; 
+				}
+				if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+					System.out.println("LEFT2");
+					playerTwo.movingLeft = false; 
+				}
+				if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+					System.out.println("RIGHT2");
+					playerTwo.movingRight = false; 
+				}
+		}
+
+	}
+
+	// TODO: allow player to hold the ball before serving
 	
+	
+	// TODO: implement serving functionality
+	// TODO: Make player able to hit the ball
+	// TODO: Make it so that when player approaches ball faster it travels faster
 
 }

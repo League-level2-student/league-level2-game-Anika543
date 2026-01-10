@@ -1,5 +1,7 @@
 package pingpong;
 
+import java.awt.Dimension;
+
 import javax.swing.JFrame;
 
 public class PingPong {
@@ -21,9 +23,11 @@ public class PingPong {
 
 	void setup() {
 		frame.setVisible(true);
-		frame.setSize(WIDTH, HEIGHT);
+		//frame.setSize(WIDTH, HEIGHT);
+		gamePanel.setPreferredSize(new Dimension (WIDTH, HEIGHT));
 		frame.add(gamePanel);
-		frame.addKeyListener(gamePanel);
+		frame.pack(); 
+		frame.addKeyListener(gamePanel.objectManager);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}
