@@ -27,5 +27,6 @@ public class GameObject {
 	void update() {
 //TODO: update collision boxes
 		collisionBox.setBounds(x, y, width, height); 
+		
 	}
 }

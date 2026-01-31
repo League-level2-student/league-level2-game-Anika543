@@ -15,6 +15,9 @@ public class Table extends GameObject{
 	void draw(Graphics g) {
 		g.setColor(color);
 		g.fillRect(x, y, width, height); 
+		
+		g.setColor(Color.WHITE);		
+		g.fillRect(x+198, y, 4, height);
 		Color c = new Color(255,255,255);
 	}
 }
