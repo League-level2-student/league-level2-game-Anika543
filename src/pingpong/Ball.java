@@ -14,6 +14,7 @@ public class Ball extends GameObject {
 	int drag = 1;
 	int frameCounter = 0;
 	int amountOfTimesBounced = 0;
+	int pointsPlayed = 0; 
 
 	public Ball(int x, int y, int width, int height, int speed, Color color, ObjectManager objectManager) {
 		// TODO Auto-generated constructor stub
@@ -104,6 +105,7 @@ public class Ball extends GameObject {
 		xVel = 15;
 		zVel = 15;
 		yVel = -(15 * (y - 250)) / (500 - x);
+		pointsPlayed++; 
 	}
 
 }

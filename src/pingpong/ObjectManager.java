@@ -171,7 +171,7 @@ public class ObjectManager implements KeyListener {
 
 	
 	// TODO: Make it so that when player approaches ball faster it travels faster
-	// TODO: Ball shouldn't bounce if off the table
+	// TODO: Ball shouldn't bounce if off the table (give the player more time to hit the ball?)
 	// TODO: If the player hits the ball at an angle the ball goes at an angle 
 
 
