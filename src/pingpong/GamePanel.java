@@ -19,6 +19,8 @@ public class GamePanel extends JPanel implements ActionListener{
 	Font titleFont;
 	Font font;
 	Timer frameDraw;
+	static int scoreOne = 0;
+	static int scoreTwo = 0; 
 //	Player playerOne = new Player(40, 200, 25, 50, Color.RED, 10);
 //	Player playerTwo = new Player(720, 200, 25, 50, Color.YELLOW, 10);
 //	Ball ball = new Ball(playerOne.x, playerOne.y, 25, 25, 0, Color.WHITE); 
@@ -70,6 +72,10 @@ public class GamePanel extends JPanel implements ActionListener{
 		g.fillRect(0, 0, PingPong.WIDTH, PingPong.HEIGHT);
 		
 		objectManager.draw(g); 
+		
+		g.setFont(titleFont);
+		g.setColor(Color.WHITE);
+		g.drawString(scoreOne + " : " + scoreTwo, 330, 60);
 
 	}
 
