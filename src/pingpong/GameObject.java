@@ -2,7 +2,7 @@ package pingpong;
 
 import java.awt.Rectangle;
 
-public class GameObject {
+public class GameObject  {
 
 	int x;
 	int y;

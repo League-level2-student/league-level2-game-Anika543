@@ -32,18 +32,24 @@ public class ObjectManager implements KeyListener {
 
 	private void checkCollisions() {
 		// TODO Auto-generated method stub
-		if (hasBallBeenServed) {
+		if (hasBallBeenServed && ball.amountOfTimesBounced > 0) {
 			if (ball.collisionBox.intersects(playerTwo.collisionBox)) {
-				ball.xVel = -15;
+				ball.xVel = -10;
 				ball.amountOfTimesBounced = 0; 
 				//ball.zVel = 10; 
+				int bounceAngle = ball.y + ball.height/2 - (playerTwo.y + playerTwo.height/2); 
+				ball.yVel = bounceAngle/10; 
 				
 			}
 			if (ball.collisionBox.intersects(playerOne.collisionBox)) {
-				ball.xVel = 15;
+				ball.xVel = 10;
 				ball.amountOfTimesBounced = 0; 
 				//ball.zVel = 10; 
+				int bounceAngle = ball.y + ball.height/2 - (playerOne.y + playerOne.height/2); 
+				ball.yVel = bounceAngle/10; 
 			}
+			
+			
 		}
 
 	}
@@ -172,7 +178,8 @@ public class ObjectManager implements KeyListener {
 	
 	// TODO: Make it so that when player approaches ball faster it travels faster
 	// TODO: Ball shouldn't bounce if off the table (give the player more time to hit the ball?)
-	// TODO: If the player hits the ball at an angle the ball goes at an angle 
+	// TODO: If the player hits the ball at an angle the ball goes at an angle <- complete kind of
+	// TODO: Fix player movement boundaries
 
 
 }

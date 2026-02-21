@@ -8,6 +8,7 @@ public class Player extends GameObject {
 	boolean left;
 	Color color;
 	boolean isServing; 
+	ObjectManager objectManager;  
 
 	public Player(int x, int y, int width, int height, Color color, int speed, ObjectManager objectManager,
 			boolean left, boolean isServing) {
@@ -16,7 +17,7 @@ public class Player extends GameObject {
 		this.color = color;
 		this.left = left;
 		this.isServing = isServing; 
-
+		this.objectManager = objectManager; 
 	}
 
 	void draw(Graphics g) {
@@ -31,7 +32,8 @@ public class Player extends GameObject {
 
 	public void right() {
 		if (left) {
-			if (x <= objectManager.table.x - width - speed) {
+			if (x <= objectManager.table.x - width - speed || objectManager.table.y > y + height 
+					|| objectManager.table.y+objectManager.table.height < y  ) {
 				x += speed;
 			}
 		} else {
@@ -45,7 +47,8 @@ public class Player extends GameObject {
 	public void left() {
 
 		if (!left) {
-			if (x >= objectManager.table.x + objectManager.table.width + speed) {
+			if (x >= objectManager.table.x + objectManager.table.width + speed|| objectManager.table.y > y + height 
+					|| objectManager.table.y+objectManager.table.height < y  ) {
 				x -= speed;
 			}
 		} else {
@@ -54,9 +57,11 @@ public class Player extends GameObject {
 			}
 		}
 	}
+	
+	
 
 	public void up() {
-		if (y >= 0)
+		if (y >= 0 && !(objectManager.table.y+objectManager.table.height == y && objectManager.table.x<x+width))
 			y -= speed;
 	}
 

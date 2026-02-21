@@ -26,7 +26,8 @@ public class Ball extends GameObject {
 	void draw(Graphics g) {
 		g.setColor(color);
 		g.fillOval(x, y, width + z, height + z);
-
+		g.setColor(Color.green);
+		g.fillRect(x, y, 5, 5);
 	}
 
 	void update() {
@@ -35,7 +36,7 @@ public class Ball extends GameObject {
 			y += yVel;
 			z += zVel;
 
-			if (z > 0) {
+			if (z > 0 && frameCounter % 3 == 0) {
 				zVel -= gravity;
 
 			}
@@ -43,7 +44,7 @@ public class Ball extends GameObject {
 			if (z <= 0) {
 				z = 0;
 				amountOfTimesBounced++;
-				zVel = 15 - amountOfTimesBounced;
+				zVel = 5 - amountOfTimesBounced;
 
 				if (amountOfTimesBounced > 15) {
 					zVel = 0;
@@ -54,7 +55,7 @@ public class Ball extends GameObject {
 				}
 			}
 
-			if (Math.abs(xVel) > 0 && frameCounter % 9 == 0) {
+			if (Math.abs(xVel) > 0 && frameCounter % 25 == 0) {
 				if (xVel > 0) {
 					xVel -= drag;
 				}
@@ -64,7 +65,7 @@ public class Ball extends GameObject {
 
 			}
 
-			if (Math.abs(yVel) > 0 && frameCounter % 9 == 0) {
+			if (Math.abs(yVel) > 0 && frameCounter % 25 == 0) {
 				if (yVel > 0) {
 					yVel -= drag;
 				}
@@ -74,37 +75,41 @@ public class Ball extends GameObject {
 
 			}
 
-			if (zVel < 1) {
+			if (z < 1) {
 				if (objectManager.hasBallBeenServed && (x > 600)) // || (x > 400 && (y > 350 || y < 150)))
 				{
 					GamePanel.scoreOne += 1;
+					amountOfTimesBounced = 0; 
 					objectManager.hasBallBeenServed = false;
 				}
 			}
 
-			if (zVel <14 && amountOfTimesBounced >1 ) {
-				if (objectManager.hasBallBeenServed && (x < 200)) // || (x < 400 && (y > 350 || y < 150)))
+			if (z < 1 && amountOfTimesBounced >1 ) {
+				if (objectManager.hasBallBeenServed && (x < 200-width)) // || (x < 400 && (y > 350 || y < 150)))
 				{
 					GamePanel.scoreTwo += 1;
+					amountOfTimesBounced = 0; 
 					objectManager.hasBallBeenServed = false;
 				}
 			}
 
 			frameCounter++;
 		} else {
-			zVel = 15;
+			zVel = 5;
 			z = 1;
 
 		}
+		width = 25 + z;
+		height = 25 + z; 
 		super.update();
 	}
 
 	public void serve() {
 
 		// TODO Auto-generated method stub
-		xVel = 15;
-		zVel = 15;
-		yVel = -(15 * (y - 250)) / (500 - x);
+		xVel = 10;
+		zVel = 5;
+		yVel = -(10 * (y - 250)) / (500 - x);
 		pointsPlayed++; 
 	}
 
