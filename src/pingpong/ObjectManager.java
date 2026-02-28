@@ -184,6 +184,7 @@ public class ObjectManager implements KeyListener {
 	// TODO: Ball shouldn't bounce if off the table (give the player more time to hit the ball?)
 	// TODO: If the player hits the ball at an angle the ball goes at an angle <- complete kind of
 	// TODO: Fix player movement boundaries
+	// TODO: Add images <-- next step
 
 
 }
