@@ -28,6 +28,8 @@ public class ObjectManager implements KeyListener {
 		ball.update();
 
 		checkCollisions();
+		
+		
 	}
 
 	private void checkCollisions() {
@@ -38,7 +40,7 @@ public class ObjectManager implements KeyListener {
 				ball.amountOfTimesBounced = 0; 
 				//ball.zVel = 10; 
 				int bounceAngle = ball.y + ball.height/2 - (playerTwo.y + playerTwo.height/2); 
-				ball.yVel = bounceAngle/10; 
+				ball.yVel = bounceAngle/9; 
 				
 			}
 			if (ball.collisionBox.intersects(playerOne.collisionBox)) {
@@ -46,7 +48,7 @@ public class ObjectManager implements KeyListener {
 				ball.amountOfTimesBounced = 0; 
 				//ball.zVel = 10; 
 				int bounceAngle = ball.y + ball.height/2 - (playerOne.y + playerOne.height/2); 
-				ball.yVel = bounceAngle/10; 
+				ball.yVel = bounceAngle/9; 
 			}
 			
 			
@@ -81,6 +83,8 @@ public class ObjectManager implements KeyListener {
 				GamePanel.currentState++;
 			}
 		}
+		
+		
 		if (GamePanel.currentState == GamePanel.GAME) {
 			if (e.getKeyCode() == KeyEvent.VK_W) {
 				System.out.println("UP");

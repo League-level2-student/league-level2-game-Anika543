@@ -7,7 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -21,6 +23,10 @@ public class GamePanel extends JPanel implements ActionListener{
 	Timer frameDraw;
 	static int scoreOne = 0;
 	static int scoreTwo = 0; 
+	int winner; 
+	public static BufferedImage image;
+	public static boolean needImage = true;
+	public static boolean gotImage = false;	
 //	Player playerOne = new Player(40, 200, 25, 50, Color.RED, 10);
 //	Player playerTwo = new Player(720, 200, 25, 50, Color.YELLOW, 10);
 //	Ball ball = new Ball(playerOne.x, playerOne.y, 25, 25, 0, Color.WHITE); 
@@ -46,6 +52,17 @@ public class GamePanel extends JPanel implements ActionListener{
 
 	void updateGameState() {
 		objectManager.update(); 
+		if(scoreOne>=11) {
+			winner = 1; 
+			currentState = END; 
+			scoreOne = 0;
+			scoreTwo = 0; 
+		}else if(scoreTwo>= 11) {
+			winner = 2; 
+			currentState = END; 
+			scoreOne = 0; 
+			scoreTwo = 0; 
+		}
 	}
 
 	void updateEndState() {
@@ -71,6 +88,7 @@ public class GamePanel extends JPanel implements ActionListener{
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, PingPong.WIDTH, PingPong.HEIGHT);
 		
+		
 		objectManager.draw(g); 
 		
 		g.setFont(titleFont);
@@ -89,9 +107,10 @@ public class GamePanel extends JPanel implements ActionListener{
 
 		g.setFont(font);
 		g.setColor(Color.YELLOW);
-		g.drawString("Your Score was " + "", 300, 250);
-		;
+		g.drawString("The winner was player " + winner, 300, 250);
+		
 		g.drawString("Press ENTER to restart", 300, 300);
+
 
 	}
 
@@ -119,7 +138,8 @@ public class GamePanel extends JPanel implements ActionListener{
 		//ystem.out.println("action");
 		repaint();
 	}
-
+	
+	
 
 	}
 
