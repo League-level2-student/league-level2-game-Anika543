@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.JOptionPane;
+
 public class ObjectManager implements KeyListener {
 
 	final int playerWidth = 20;
@@ -79,45 +81,55 @@ public class ObjectManager implements KeyListener {
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			if (GamePanel.currentState == GamePanel.END) {
 				GamePanel.currentState = GamePanel.MENU;
+				playerOne.x = 40; 
+				playerOne.y = 200;
+				playerTwo.x = PingPong.WIDTH - 40 - playerOne.width;
+				playerTwo.y = 200; 
 			} else {
 				GamePanel.currentState++;
 			}
 		}
 		
+		if (e.getKeyCode() == KeyEvent.VK_SPACE && GamePanel.currentState == GamePanel.MENU) {
+			JOptionPane.showMessageDialog(null, "Use WASD to move the player on the left and arrow keys to move the player on the right");
+			JOptionPane.showMessageDialog(null, "Hit the ball before it bounces on the floor");
+			JOptionPane.showMessageDialog(null, "First player to 11 points wins");
+		}
+		
 		
 		if (GamePanel.currentState == GamePanel.GAME) {
 			if (e.getKeyCode() == KeyEvent.VK_W) {
-				System.out.println("UP");
+				//("UP");
 				playerOne.movingUp = true;
 			}
 			if (e.getKeyCode() == KeyEvent.VK_S) {
-				System.out.println("DOWN");
+				//("DOWN");
 				playerOne.movingDown = true;
 			}
 			if (e.getKeyCode() == KeyEvent.VK_A) {
-				System.out.println("LEFT");
+				//("LEFT");
 				playerOne.movingLeft = true;
 			}
 			if (e.getKeyCode() == KeyEvent.VK_D) {
-				System.out.println("RIGHT");
+				//("RIGHT");
 				playerOne.movingRight = true;
 			}
 
 			// playerTwo movement
 			if (e.getKeyCode() == KeyEvent.VK_UP) {
-				System.out.println("UP2");
+				//("UP2");
 				playerTwo.movingUp = true;
 			}
 			if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-				System.out.println("DOWN2");
+				//("DOWN2");
 				playerTwo.movingDown = true;
 			}
 			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-				System.out.println("LEFT2");
+				//("LEFT2");
 				playerTwo.movingLeft = true;
 			}
 			if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-				System.out.println("RIGHT2");
+				//("RIGHT2");
 				playerTwo.movingRight = true;
 			}
 
@@ -142,37 +154,40 @@ public class ObjectManager implements KeyListener {
 		// TODO Auto-generated method stub
 		if (GamePanel.currentState == GamePanel.GAME) {
 			// playerOne movement
+			if (e.getKeyCode() == KeyEvent.VK_T) {
+				GamePanel.scoreOne = 10;
+			}
 			if (e.getKeyCode() == KeyEvent.VK_W) {
-				System.out.println("UP");
+				//("UP");
 				playerOne.movingUp = false;
 			}
 			if (e.getKeyCode() == KeyEvent.VK_S) {
-				System.out.println("DOWN");
+				//("DOWN");
 				playerOne.movingDown = false;
 			}
 			if (e.getKeyCode() == KeyEvent.VK_A) {
-				System.out.println("LEFT");
+				//("LEFT");
 				playerOne.movingLeft = false;
 			}
 			if (e.getKeyCode() == KeyEvent.VK_D) {
-				System.out.println("RIGHT");
+				//("RIGHT");
 				playerOne.movingRight = false;
 			}
 			// playerTwo movement
 			if (e.getKeyCode() == KeyEvent.VK_UP) {
-				System.out.println("UP2");
+				//("UP2");
 				playerTwo.movingUp = false;
 			}
 			if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-				System.out.println("DOWN2");
+				//("DOWN2");
 				playerTwo.movingDown = false;
 			}
 			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-				System.out.println("LEFT2");
+				//("LEFT2");
 				playerTwo.movingLeft = false;
 			}
 			if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-				System.out.println("RIGHT2");
+				//("RIGHT2");
 				playerTwo.movingRight = false;
 			}
 		}

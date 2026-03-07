@@ -76,7 +76,7 @@ public class Ball extends GameObject {
 			}
 
 			if (z < 1) {
-				if (objectManager.hasBallBeenServed && (x > 600)  || (x > 400 && (y > 350 || y < 150)))
+				if (objectManager.hasBallBeenServed && ((x > 600)  || (x > 200 && (y > 350 || y < 150))))
 				{
 					GamePanel.scoreOne += 1;
 					amountOfTimesBounced = 0; 
@@ -85,7 +85,7 @@ public class Ball extends GameObject {
 			}
 
 			if (z < 1 && amountOfTimesBounced >1 ) {
-				if (objectManager.hasBallBeenServed && (x < 200-width) || (x < 400 && (y > 350 || y < 150)))
+				if (objectManager.hasBallBeenServed && ((x < 200-width) || (x < 400 && (y > 350 || y < 150))))
 				{
 					GamePanel.scoreTwo += 1;
 					amountOfTimesBounced = 0; 
